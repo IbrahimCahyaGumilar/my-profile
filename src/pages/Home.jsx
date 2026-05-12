@@ -1,41 +1,33 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import SpaceBackground from "../components/SpaceBackground";
 
-// Assets
+
 import CSS from "../assets/images/portfolio1/css.png";
 import CV from "../assets/images/portfolio1/CV_ATS.pdf";
 import HTML from "../assets/images/portfolio1/html.png";
 import People from "../assets/images/portfolio1/people.png";
 import Tailwind from "../assets/images/portfolio1/tailwind.png";
 import icReact from "../assets/images/portfolio1/react.png";
-import pontaRamen from "../assets/images/portfolio1/ponta-ramen.png";
-import property from "../assets/images/portfolio1/property.png";
-import conwood from "../assets/images/portfolio1/conwood.png";
 
-import { FaInstagram, FaGithub } from "react-icons/fa";
+import cuttingFashion from "../assets/images/portfolio1/cutting-fashion.png";
+import pontaRamen from "../assets/images/portfolio1/ponta-ramen.png";
+import conwood from "../assets/images/portfolio1/conwood.png";
+import property from "../assets/images/portfolio1/property.png";
+
+import { FaGithub } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
+import { SlLocationPin } from "react-icons/sl";
+import Contact from "../components/fragments/contact";
 
 const Home = () => {
-    const [typedText, setTypedText] = useState("");
     const [menuOpen, setMenuOpen] = useState(false);
     const fullName = "Ibrahim Cahya Gumilar";
-    const indexRef = useRef(0);
-    const intervalRef = useRef(null);
 
-    // Typing animation & AOS setup
+    // Setup AOS & Scroll Listener (Logika typing dihapus)
     useEffect(() => {
         AOS.init({ duration: 1000, once: true, offset: 100 });
-
-        intervalRef.current = setInterval(() => {
-            const currentIndex = indexRef.current;
-            if (currentIndex < fullName.length) {
-                setTypedText((prev) => prev + fullName[currentIndex]);
-                indexRef.current += 1;
-            } else {
-                clearInterval(intervalRef.current);
-            }
-        }, 140);
 
         const handleScroll = () => {
             if (window.scrollY > 0 && menuOpen) setMenuOpen(false);
@@ -43,7 +35,6 @@ const Home = () => {
 
         window.addEventListener("scroll", handleScroll);
         return () => {
-            clearInterval(intervalRef.current);
             window.removeEventListener("scroll", handleScroll);
         };
     }, [menuOpen]);
@@ -65,18 +56,18 @@ const Home = () => {
 
     const projects = [
         {
+            title: "Website Company Profile",
+            img: cuttingFashion,
+            tech: [],
+            live: "https://cutting-fashion.vercel.app/",
+            repo: "https://github.com/IbrahimCahyaGumilar/fashion-frontend",
+        },
+        {
             title: "Website Restoran",
             img: pontaRamen,
             tech: [],
             live: "https://ponta-ramen.netlify.app/",
             repo: "https://github.com/IbrahimCahyaGumilar/ponta-ramen",
-        },
-        {
-            title: "Website Properti",
-            img: property,
-            tech: [],
-            live: "https://hasanahland.com/",
-            repo: "https://github.com/IbrahimCahyaGumilar/web-school",
         },
         {
             title: "Conwood",
@@ -85,121 +76,70 @@ const Home = () => {
             live: "https://www.conwood.com/",
             repo: "https://github.com/IbrahimCahyaGumilar/web-school",
         },
+        {
+            title: "Website Properti",
+            img: property,
+            tech: [],
+            live: "https://hasanahland.com/",
+            repo: "https://github.com/IbrahimCahyaGumilar/web-school",
+        },
     ];
 
     const socialLinks = [
-        {
-            id: 1,
-            icon: <HiOutlineMail size={25} />,
-            href: "mailto:ibrahimcahya08@gmail.com",
-        },
-        {
-            id: 2,
-            icon: <FaGithub size={25} />,
-            href: "https://github.com/IbrahimCahyaGumilar",
-        },
-        {
-            id: 3,
-            icon: <FaInstagram size={25} />,
-            href: "https://www.instagram.com/ibrahim_cahya08/",
-        },
+        { id: 1, icon: <HiOutlineMail size={25} />, href: "mailto:ibrahimcahya08@gmail.com" },
+        { id: 2, icon: <FaGithub size={25} />, href: "https://github.com/IbrahimCahyaGumilar" }
     ];
 
     return (
-        <div className="bg-[#111] text-white">
+        <div className="relative w-full text-white overflow-hidden">
+            <SpaceBackground />
             {/*  NAVBAR  */}
-            <nav className="fixed top-0 left-0 w-full bg-black/95 backdrop-blur-md z-[60] shadow-md">
+            <nav className="fixed top-0 left-0 w-full bg-transparent backdrop-blur-md z-[60] shadow-md">
                 <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                    {/* Logo */}
                     <div className="text-3xl font-bold font-logo tracking-wide text-white">
-                        Ibrahim
+                        Portfolio
                     </div>
 
-                    {/* Menu Links */}
-                    <ul
-                        className={`font-medium flex flex-col md:flex-row gap-6 md:gap-10 fixed md:static top-full left-0 translate-y-full md:translate-y-0 transition-all duration-500 ease-in-out ${menuOpen ? "translate-x-0" : "-translate-x-full"
-                            } md:translate-x-0 bg-slate-800 md:bg-transparent px-8 py-6 md:p-0 shadow-lg md:shadow-none`}
-                    >
+                    <ul className={`font-medium flex flex-col md:flex-row gap-6 md:gap-10 fixed md:static top-1/2 left-0 translate-y-1/2 transition-all duration-500 ease-in-out ${menuOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 bg-slate-800 md:bg-transparent px-8 py-6 md:p-0 shadow-lg md:shadow-none`}>
                         {["Home", "About", "Skills", "Project"].map((item) => (
                             <li key={item}>
-                                <a
-                                    href={`#${item.toLowerCase()}`}
-                                    onClick={() => setMenuOpen(false)}
-                                    className="font-navbar relative text-xl text-white hover:text-sky-400 transition duration-300 
-                  after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px]
-                  after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full"
-                                >
+                                <a href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="font-navbar relative text-xl text-white hover:text-sky-400 transition duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">
                                     {item}
                                 </a>
                             </li>
                         ))}
                     </ul>
 
-                    {/* Hamburger Button */}
-                    <button
-                        className="relative w-8 h-6 md:hidden"
-                        onClick={() => setMenuOpen(!menuOpen)}
-                    >
-                        <span
-                            className={`absolute left-0 w-full h-[2px] bg-white transition-transform duration-300 ${menuOpen ? "top-2.5 rotate-45" : "top-0"
-                                }`}
-                        />
-                        <span
-                            className={`absolute left-0 w-full h-[2px] bg-white transition-opacity duration-300 ${menuOpen ? "opacity-0 top-2.5" : "top-2.5"
-                                }`}
-                        />
-                        <span
-                            className={`absolute left-0 w-full h-[2px] bg-white transition-transform duration-300 ${menuOpen ? "top-2.5 -rotate-45" : "bottom-0"
-                                }`}
-                        />
+                    <button className="relative w-8 h-6 md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+                        <span className={`absolute left-0 w-full h-[2px] bg-white transition-transform duration-300 ${menuOpen ? "top-2.5 rotate-45" : "top-0"}`} />
+                        <span className={`absolute left-0 w-full h-[2px] bg-white transition-opacity duration-300 ${menuOpen ? "opacity-0" : "top-2.5"}`} />
+                        <span className={`absolute left-0 w-full h-[2px] bg-white transition-transform duration-300 ${menuOpen ? "top-2.5 -rotate-45" : "bottom-0"}`} />
                     </button>
                 </div>
             </nav>
 
-            {/*  HERO  */}
-            <section
-                id="home"
-                className="max-w-7xl mx-auto px-6 min-h-screen flex flex-col md:flex-row items-center md:justify-between pt-24 gap-10"
-            >
-                {/* kiri */}
+            {/* HERO */}
+            <section id="home" className="max-w-7xl mx-auto px-6 min-h-screen flex flex-col md:flex-row items-center md:justify-between pt-24 gap-10">
                 <div className="max-w-lg">
-                    <h2 className="text-sky-400 text-lg md:text-xl font-bold">
-                        Hi, my name is
-                    </h2>
+                    <h2 className="text-sky-400 text-lg md:text-xl font-bold">Hi, my name is</h2>
                     <h1 className="text-white text-5xl lg:text-7xl font-bold mt-4 leading-tight">
-                        <span className="border-r-2 border-sky-400 pr-1">
-                            {typedText}
+                        {/* Menampilkan Nama Langsung Tanpa Animasi */}
+                        <span className="">
+                            {fullName}
                         </span>
                     </h1>
-                    <p className="text-lg md:text-xl font-bold italic mt-4 mb-6">
-                        Front-end Web Developer
-                    </p>
+                    <p className="text-lg md:text-xl font-bold italic mt-4 mb-6">Front-end Web Developer</p>
                     <a href={CV} target="_blank" rel="noopener noreferrer" className="cursor-pointer border-2 border-sky-400 text-sky-400 px-10 py-2 md:px-12 md:py-3 rounded-lg hover:bg-sky-300 hover:text-black font-bold transition duration-300">
                         View CV
                     </a>
                 </div>
 
-                {/* kanan */}
                 <div className="relative z-0 flex justify-center items-end">
                     <figure className="relative z-10 max-w-md mx-auto">
-                        <img
-                            src={People}
-                            alt="Coding"
-                            className="w-11/12 h-auto drop-shadow-xl"
-                        />
+                        <img src={People} alt="Coding" className="w-11/12 h-auto drop-shadow-xl" />
                     </figure>
-
-                    {/* Blob */}
-                    <svg
-                        viewBox="0 0 200 200"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="absolute -bottom-28 left-[45%] -translate-x-1/2 w-full z-0 opacity-90"
-                    >
-                        <path
-                            fill="#38bdf8"  // sky-400
-                            d="M55.7,-41.1C58.9,-26.5,39.2,-7.7,26.1,4.1C12.9,15.9,6.5,20.6,0.6,20.3C-5.3,19.9,-10.6,14.6,-24.4,2.4C-38.2,-9.8,-60.4,-28.8,-57.8,-43C-55.1,-57.2,-27.6,-66.7,-0.7,-66.3C26.2,-65.9,52.4,-55.6,55.7,-41.1Z"
-                            transform="translate(100 100) scale(1.4)"
-                        />
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="absolute -bottom-28 left-[45%] -translate-x-1/2 w-full z-0 opacity-90">
+                        <path fill="#38bdf8" d="M55.7,-41.1C58.9,-26.5,39.2,-7.7,26.1,4.1C12.9,15.9,6.5,20.6,0.6,20.3C-5.3,19.9,-10.6,14.6,-24.4,2.4C-38.2,-9.8,-60.4,-28.8,-57.8,-43C-55.1,-57.2,-27.6,-66.7,-0.7,-66.3C26.2,-65.9,52.4,-55.6,55.7,-41.1Z" transform="translate(100 100) scale(1.4)" />
                     </svg>
                 </div>
             </section>
@@ -413,6 +353,9 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+
+            {/* Contact */}
+            <Contact />
 
             {/* ===== FOOTER ===== */}
             <footer className="py-6 mt-32 border-t border-slate-900 text-center">
