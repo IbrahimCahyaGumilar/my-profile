@@ -33,7 +33,7 @@ const Navbar = () => {
                 </div>
 
                 <ul className={`font-medium flex flex-col md:flex-row gap-6 md:gap-10 fixed md:static top-1/2 left-0 translate-y-1/2 transition-all duration-500 ease-in-out ${menuOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 bg-slate-800 md:bg-transparent px-8 py-6 md:p-0 shadow-lg md:shadow-none`}>
-                    {["Home", "About", "Skills", "Project"].map((item) => (
+                    {["Home", "About", "Tools", "Project", "Contact"].map((item) => (
                         <li key={item}>
                             <a href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="font-navbar relative text-xl text-white hover:text-sky-400 transition duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">
                                 {item}

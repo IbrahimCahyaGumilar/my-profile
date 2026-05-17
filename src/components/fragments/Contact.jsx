@@ -40,13 +40,16 @@ const Contact = () => {
   };
   return (
     <>
-      <section className="container mx-auto px-6 md:px-12 pt-20 md:pt-32">
+      <section
+        id="contact"
+        className="container mx-auto px-6 md:px-12 pt-20 min-h-screen"
+        data-aos="fade-up">
         <Subtitle>
           Contact Us
         </Subtitle>
 
-        <div className="flex flex-col lg:flex-row justify-between">
-          <ul className="flex flex-row lg:flex-col gap-8 flex-wrap w-full lg:w-2/5">
+        <div className="flex flex-col lg:flex-row gap-10 justify-center">
+          <ul className="flex flex-row lg:flex-col gap-8 flex-wrap">
             <li className="flex items-center gap-2"
               data-aos="fade-up"
               data-aos-delay="500">
@@ -83,7 +86,7 @@ const Contact = () => {
             </li>
           </ul>
 
-          <form ref={form} onSubmit={sendEmail} className="w-full lg:w-3/5 pt-10 lg:pt-0"
+          <form ref={form} onSubmit={sendEmail} className="w-full lg:w-1/2 pt-10 lg:pt-0"
             data-aos="fade-up"
             data-aos-delay="800">
 

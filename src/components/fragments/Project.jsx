@@ -4,6 +4,7 @@ import cuttingFashion from "../../assets/images/cutting-fashion.png";
 import pontaRamen from "../../assets/images/ponta-ramen.png";
 import conwood from "../../assets/images/conwood.png";
 import property from "../../assets/images/property.png";
+import Subtitle from '../elements/Subtitle';
 
 const Project = () => {
     const projects = [
@@ -43,20 +44,16 @@ const Project = () => {
     return (
         <div
             id="project"
-            className="w-full min-h-screen pt-32 md:pt-20"
+            className="container mx-auto px-6 md:px-12 min-h-screen pt-20 flex items-center justify-center"
             data-aos="fade-up"
         >
             <div className="max-w-screen-lg mx-auto p-4 flex flex-col gap-12">
-                <h1
-                    className="text-4xl font-semibold text-sky-400 text-center"
-                    data-aos="fade-up"
-                    data-aos-delay="100"
-                >
-                    My Projects
-                </h1>
+                <Subtitle>
+                    My Project
+                </Subtitle>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-                    {projects.map(( proj, i ) => (
+                    {projects.map((proj, i) => (
                         <div
                             key={proj.id}
                             className="shadow-md shadow-sky-400 rounded-lg overflow-hidden bg-[#1a1a1a] duration-700 hover:scale-105"

@@ -3,7 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import SpaceBackground from "../components/SpaceBackground";
 
-import Contact from "../components/fragments/contact";
+import Contact from "../components/fragments/Contact";
 import Navbar from "../components/fragments/Navbar";
 import Hero from "../components/fragments/Hero";
 import About from "../components/fragments/About";
