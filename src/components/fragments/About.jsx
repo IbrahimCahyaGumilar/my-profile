@@ -18,21 +18,12 @@ const About = () => {
                     data-aos="fade-up"
                     data-aos-delay="500"
                 >
-                    Saya Ibrahim Cahya Gumilar berasal dari Sukabumi Jawa Barat adalah seorang fresh graduate S1 Jurusan Teknik Informatika di Universitas Nusa Putra Sukabumi, yang memiliki semangat tinggi untuk mengembangkan karier di dunia kerja. Selama masa studi, saya memiliki pengalaman magang selama 8 bulan di PT Nugraha Kreasi Digital yang bergerak di bidang pengembangan web. Saya ditempatkan sebagai Frontend Web Developer mempelajari cara membuat tampilan web yang responsif dengan menggunakan Tailwind CSS serta mempelajari framework React.js, Laravel dan dapat bekerjasama dengan tim.
-                </p>
+                    Saya adalah Fresh Graduate Teknik Informatika yang berfokus pada pengembangan Frontend Web. Memiliki pengalaman magang sebagai Frontend Developer selama 8 bulan dalam membangun tampilan web responsif menggunakan React.js dan Tailwind CSS serta berkolaborasi dalam tim pengembangan.
 
-                <div className="flex flex-wrap gap-4">
-                    {["Musik", "Gambar", "Menonton", "Game"].map((hobby, i) => (
-                        <div
-                            key={hobby}
-                            className="cursor-default flex items-center gap-2 px-6 py-2 border-2 border-sky-400 text-sky-400 rounded-full font-bold"
-                            data-aos="fade-up"
-                            data-aos-delay={700 + i * 200}
-                        >
-                            <span>{hobby}</span>
-                        </div>
-                    ))}
-                </div>
+                    Saya memiliki minat besar pada pengembangan antarmuka yang modern, bersih, dan mudah digunakan, serta terus mengembangkan kemampuan melalui project mandiri dan pembelajaran teknologi terbaru.
+
+                    Saat ini saya terbuka untuk kesempatan sebagai Frontend Developer dan siap berkembang bersama tim profesional.
+                </p>
             </div>
         </div>
     )
